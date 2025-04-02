@@ -1,0 +1,1 @@
+# Dimensionality-Reduction-Techniques-on-EuroSAT-Satellite-Images
