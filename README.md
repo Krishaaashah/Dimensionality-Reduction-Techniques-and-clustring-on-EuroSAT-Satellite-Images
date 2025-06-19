@@ -1,21 +1,96 @@
-# 🌍 EuroSAT Dimensionality Reduction
+# 🌍 EuroSAT Image Analysis with Dimensionality Reduction and Clustering
 
-This project applies multiple dimensionality reduction techniques to the **EuroSAT dataset** for efficient satellite imagery analysis.
+This project explores the **EuroSAT dataset**, applying both **dimensionality reduction techniques** and **unsupervised clustering algorithms** to analyze satellite images categorized by land use and land cover types. The goal is to reduce data complexity, extract meaningful features, and identify natural groupings of images.
 
-## 📂 Dataset Overview
-The **EuroSAT dataset** consists of satellite images categorized into various land use classes such as *Forest*, *Industrial*, *Residential*, and more. Each image has a resolution of `64x64` pixels with RGB color channels.
+---
 
-## 🔧 Applied Dimensionality Reduction Techniques
-We implemented several dimensionality reduction techniques to analyze and visualize high-dimensional data:
+## 📁 Dataset Description
 
-- **📌 PCA (Principal Component Analysis)** – Reduces feature space while preserving maximum variance.
-- **📌 LDA (Linear Discriminant Analysis)** – Projects data to maximize class separability.
-- **📌 SVD (Singular Value Decomposition)** – Decomposes data into fundamental components.
-- **📌 t-SNE (T-Distributed Stochastic Neighbor Embedding)** – Maps high-dimensional data into 2D/3D space for visualization.
-- **📌 MDS (Multidimensional Scaling)** – Preserves pairwise distances for spatial similarity analysis.
+- **Dataset**: [EuroSAT](https://zenodo.org/record/7711810)
+- **Images**: ~27,000 RGB satellite images
+- **Resolution**: 64×64 pixels
+- **Classes**: 10 land use categories (e.g., Forest, SeaLake, Residential, Industrial, etc.)
+- **Source**: Sentinel-2 satellite imagery
 
-## 🛠️ Installation & Requirements
-Ensure you have Python installed along with the necessary libraries before running the scripts. Install the dependencies using:
+---
 
-```bash
-pip install numpy pandas matplotlib seaborn scikit-learn
+##  Objectives
+
+- Preprocess and flatten satellite image data for analysis
+- Apply dimensionality reduction techniques to simplify data while preserving information
+- Use clustering algorithms to group similar images without using class labels
+- Evaluate clustering performance using robust metrics
+
+---
+
+##  Dimensionality Reduction Techniques
+
+To reduce computational overhead and enhance visualization, the following techniques were applied:
+
+###  Principal Component Analysis (PCA)
+- Retained most variance while reducing dimensionality
+- Helped speed up clustering and modeling tasks
+
+###  Linear Discriminant Analysis (LDA)
+- Supervised technique used to maximize class separability
+- Applied only when true labels were available for evaluation
+
+###  Truncated SVD
+- Matrix factorization approach useful for sparse image data
+- Alternative to PCA without centering
+
+###  t-SNE
+- Visualized high-dimensional data in 2D
+- Showed clear separation in local clusters (not used for modeling)
+
+###  MDS
+- Preserved distance relationships between data points
+- Useful for visual interpretation
+
+---
+
+##  Clustering Techniques
+
+The following unsupervised learning methods were used to group images based on visual similarity:
+
+###  K-Means Clustering
+- Partitioned data into K clusters based on distance to cluster centroids
+- Optimal K selected using **Elbow Method** and **Silhouette Score**
+
+###  Agglomerative Clustering
+- Hierarchical clustering algorithm using a bottom-up approach
+- Dendrogram not plotted due to size, but clustering comparison was conducted
+
+---
+
+##  Performance Evaluation Metrics
+
+Each clustering technique was evaluated using the following metrics:
+
+| Metric | Description | Ideal |
+|--------|-------------|-------|
+| **Silhouette Score** | Measures cohesion/separation | Closer to 1 |
+| **Davies–Bouldin Index** | Average similarity of clusters | Closer to 0 |
+| **Calinski–Harabasz Index** | Ratio of between-cluster to within-cluster dispersion | Higher is better |
+| **Adjusted Rand Index** | Compares clustering to true labels (supervised) | Closer to 1 |
+
+---
+
+##  Tools & Libraries
+
+- **Python 3.10**
+- **NumPy, Pandas** – Data handling
+- **Scikit-learn** – Dimensionality reduction, clustering, evaluation metrics
+- **Matplotlib, Seaborn** – Visualization
+- **Keras** – Image preprocessing
+- **Jupyter Notebook** – Interactive development
+
+---
+
+##  Conclusion
+
+This project demonstrates how combining dimensionality reduction with clustering can reveal meaningful structure in satellite image data. Both K-Means and Agglomerative clustering effectively grouped similar images, and evaluation metrics provided insights into their quality. Such techniques offer scalable and label-free solutions for remote sensing analysis.
+
+---
+.
+
